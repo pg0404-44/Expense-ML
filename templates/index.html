@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Expense Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Smart Expense Analyzer</h1>
+      <p>
+        A machine learning based expense analyzer that predicts expense categories
+        from transaction descriptions and shows simple expense summaries.
+      </p>
+    </header>
+
+    <section class="summary">
+      <div class="summary-card">
+        <h3>Total Expenses</h3>
+        <p id="totalExpense">₹0</p>
+      </div>
+      <div class="summary-card">
+        <h3>Total Transactions</h3>
+        <p id="totalTransactions">0</p>
+      </div>
+      <div class="summary-card">
+        <h3>Top Category</h3>
+        <p id="topCategory">-</p>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="card">
+        <h2>Add Expense</h2>
+
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Transaction Description</label>
+          <input type="text" id="description" placeholder="e.g. pizza order, uber ride">
+        </div>
+
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" placeholder="e.g. 250">
+        </div>
+
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select id="type">
+            <option value="Expense">Expense</option>
+            <option value="Income">Income</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Predicted Category</label>
+          <div class="prediction-box" id="predictedCategory">Not predicted yet</div>
+        </div>
+
+        <button id="addExpenseBtn">Predict & Add Expense</button>
+      </div>
+
+      <div class="card">
+        <h2>Category-wise Spending</h2>
+        <div id="categoryChart"></div>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <h2>Expense Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody id="expenseTableBody"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
